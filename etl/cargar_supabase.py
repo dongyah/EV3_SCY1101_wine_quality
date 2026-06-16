@@ -39,7 +39,7 @@ RUTA_CSV = "data/winequality_clean.csv"
 COLUMNAS_ESPERADAS = {
     "fixed acidity", "volatile acidity", "citric acid", "residual sugar",
     "chlorides", "free sulfur dioxide", "total sulfur dioxide", "density",
-    "pH", "sulphates", "alcohol", "quality"
+    "ph", "sulphates", "alcohol", "quality"   
 }
 
 try:
