@@ -1,0 +1,36 @@
+2026-06-16 20:00:01,886 [INFO] CSV cargado: 1359 filas, 12 columnas
+2026-06-16 20:00:01,886 [ERROR] Columnas faltantes: {'residual_sugar', 'volatile_acidity', 'citric_acid', 'ph', 'free_sulfur_dioxide', 'fixed_acidity', 'total_sulfur_dioxide'}
+2026-06-16 20:01:30,157 [INFO] CSV cargado: 1359 filas, 12 columnas
+2026-06-16 20:01:30,157 [ERROR] Columnas faltantes: {'ph'}
+2026-06-16 20:02:08,758 [INFO] CSV cargado: 1359 filas, 12 columnas
+2026-06-16 20:02:08,758 [ERROR] Columnas faltantes: {'ph'}
+2026-06-16 20:02:22,109 [INFO] CSV cargado: 1359 filas, 12 columnas
+2026-06-16 20:02:22,110 [INFO] Validación de esquema: OK
+2026-06-16 20:02:22,111 [INFO] Sin valores nulos
+2026-06-16 20:02:22,112 [INFO] Distribución de categorías:
+categoria
+medio      1112
+premium     184
+bajo         63
+2026-06-16 20:02:22,114 [INFO] Features: ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol']
+2026-06-16 20:02:22,249 [INFO] Split: 1087 entrenamiento / 272 test
+2026-06-16 20:02:22,257 [INFO] Distribución tras SMOTE:
+categoria
+medio      890
+premium    890
+bajo       890
+2026-06-16 20:02:23,065 [INFO] Modelo RandomForest entrenado correctamente
+2026-06-16 20:02:23,089 [INFO] Resultados en test set real:
+              precision    recall  f1-score   support
+
+        bajo       0.36      0.31      0.33        13
+       medio       0.90      0.85      0.87       222
+     premium       0.48      0.68      0.56        37
+
+    accuracy                           0.80       272
+   macro avg       0.58      0.61      0.59       272
+weighted avg       0.82      0.80      0.80       272
+
+2026-06-16 20:02:23,139 [INFO] Modelo guardado en api/wine_model.pkl
+2026-06-16 20:02:23,168 [INFO] Dataset balanceado guardado en data/winequality_balanced.csv
+2026-06-16 20:02:23,168 [INFO] Pipeline SMOTE completado exitosamente

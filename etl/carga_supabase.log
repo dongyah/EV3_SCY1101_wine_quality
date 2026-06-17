@@ -1,0 +1,82 @@
+2026-06-16 12:53:45,881 [INFO] Conexión a Supabase exitosa
+2026-06-16 12:53:45,919 [INFO] CSV cargado: 1359 filas, 12 columnas
+2026-06-16 12:53:45,919 [INFO] Validación de esquema: OK — todas las columnas requeridas están presentes
+2026-06-16 12:53:45,930 [INFO] Sin valores nulos — datos limpios
+2026-06-16 12:53:45,930 [INFO] Columnas normalizadas: ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar', 'chlorides', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'density', 'ph', 'sulphates', 'alcohol', 'quality']
+2026-06-16 12:53:45,934 [INFO] Distribución de categorías:
+categoria
+medio      1112
+premium     184
+bajo         63
+2026-06-16 12:53:47,709 [INFO] HTTP Request: DELETE https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?id=neq.0 "HTTP/2 200 OK"
+2026-06-16 12:53:47,724 [INFO] Tabla 'vinos' limpiada exitosamente antes de la carga
+2026-06-16 12:53:48,100 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:48,103 [ERROR] Error en lote 0–100: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:48,343 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:48,344 [ERROR] Error en lote 100–200: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:48,780 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:48,781 [ERROR] Error en lote 200–300: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:49,015 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:49,016 [ERROR] Error en lote 300–400: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:49,299 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:49,300 [ERROR] Error en lote 400–500: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:49,536 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:49,537 [ERROR] Error en lote 500–600: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:49,776 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:49,777 [ERROR] Error en lote 600–700: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:50,020 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:50,021 [ERROR] Error en lote 700–800: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:50,574 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:50,575 [ERROR] Error en lote 800–900: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:50,917 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:50,917 [ERROR] Error en lote 900–1000: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:51,169 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:51,170 [ERROR] Error en lote 1000–1100: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:51,426 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:51,427 [ERROR] Error en lote 1100–1200: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:51,653 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:51,654 [ERROR] Error en lote 1200–1300: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:51,921 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22residual_sugar%22%2C%22categoria%22%2C%22citric_acid%22%2C%22free_sulfur_dioxide%22%2C%22total_sulfur_dioxide%22%2C%22density%22%2C%22alcohol%22%2C%22quality%22%2C%22ph%22%2C%22chlorides%22%2C%22volatile_acidity%22%2C%22sulphates%22%2C%22fixed_acidity%22 "HTTP/2 401 Unauthorized"
+2026-06-16 12:53:51,922 [ERROR] Error en lote 1300–1400: {'message': 'new row violates row-level security policy for table "vinos"', 'code': '42501', 'hint': None, 'details': None}
+2026-06-16 12:53:51,922 [WARNING] ⚠️ Carga finalizada con errores: 0 insertados, 1359 fallidos
+2026-06-16 19:49:04,877 [INFO] Conexión a Supabase exitosa
+2026-06-16 19:49:04,892 [INFO] CSV cargado: 1359 filas, 12 columnas
+2026-06-16 19:49:04,892 [INFO] Validación de esquema: OK — todas las columnas requeridas están presentes
+2026-06-16 19:49:04,903 [INFO] Sin valores nulos — datos limpios
+2026-06-16 19:49:04,904 [INFO] Columnas normalizadas: ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar', 'chlorides', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'density', 'ph', 'sulphates', 'alcohol', 'quality']
+2026-06-16 19:49:04,908 [INFO] Distribución de categorías:
+categoria
+medio      1112
+premium     184
+bajo         63
+2026-06-16 19:49:06,551 [INFO] HTTP Request: DELETE https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?id=neq.0 "HTTP/2 200 OK"
+2026-06-16 19:49:06,552 [INFO] Tabla 'vinos' limpiada exitosamente antes de la carga
+2026-06-16 19:49:06,804 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:06,808 [INFO] Progreso: 100/1359 registros insertados
+2026-06-16 19:49:07,009 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:07,012 [INFO] Progreso: 200/1359 registros insertados
+2026-06-16 19:49:07,345 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:07,352 [INFO] Progreso: 300/1359 registros insertados
+2026-06-16 19:49:07,547 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:07,554 [INFO] Progreso: 400/1359 registros insertados
+2026-06-16 19:49:07,832 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:07,900 [INFO] Progreso: 500/1359 registros insertados
+2026-06-16 19:49:08,090 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:08,097 [INFO] Progreso: 600/1359 registros insertados
+2026-06-16 19:49:08,288 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:08,294 [INFO] Progreso: 700/1359 registros insertados
+2026-06-16 19:49:08,488 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:08,492 [INFO] Progreso: 800/1359 registros insertados
+2026-06-16 19:49:08,680 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:08,684 [INFO] Progreso: 900/1359 registros insertados
+2026-06-16 19:49:08,875 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:08,879 [INFO] Progreso: 1000/1359 registros insertados
+2026-06-16 19:49:09,083 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:09,086 [INFO] Progreso: 1100/1359 registros insertados
+2026-06-16 19:49:09,284 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:09,289 [INFO] Progreso: 1200/1359 registros insertados
+2026-06-16 19:49:09,481 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:09,484 [INFO] Progreso: 1300/1359 registros insertados
+2026-06-16 19:49:09,668 [INFO] HTTP Request: POST https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?columns=%22chlorides%22%2C%22sulphates%22%2C%22free_sulfur_dioxide%22%2C%22citric_acid%22%2C%22fixed_acidity%22%2C%22density%22%2C%22total_sulfur_dioxide%22%2C%22ph%22%2C%22volatile_acidity%22%2C%22alcohol%22%2C%22categoria%22%2C%22residual_sugar%22%2C%22quality%22 "HTTP/2 201 Created"
+2026-06-16 19:49:09,671 [INFO] Progreso: 1359/1359 registros insertados
+2026-06-16 19:49:09,671 [INFO] ✅ Carga completa: 1359 registros cargados en Supabase sin errores
