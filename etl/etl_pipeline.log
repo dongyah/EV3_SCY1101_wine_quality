@@ -1,0 +1,90 @@
+2026-06-16 20:13:58,303 [INFO] ==================================================
+2026-06-16 20:13:58,304 [INFO] INICIO DEL PIPELINE ETL
+2026-06-16 20:13:58,304 [INFO] ==================================================
+2026-06-16 20:13:58,306 [INFO] [CSV] Archivo cargado: data/winequality_clean.csv (1359 filas)
+2026-06-16 20:13:58,307 [ERROR] [CSV] Columnas faltantes: ['fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'ph']
+2026-06-16 20:13:58,307 [WARNING] [API] DataFrame CSV vacío, se omite extracción API.
+2026-06-16 20:14:00,540 [INFO] HTTP Request: GET https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?select=%2A "HTTP/2 200 OK"
+2026-06-16 20:14:00,585 [INFO] [Supabase] 1000 filas extraídas de tabla 'vinos'.
+2026-06-16 20:14:00,585 [INFO] [Supabase] Esquema validado correctamente (1000 filas).
+2026-06-16 20:14:00,585 [ERROR] [ETL] Sin datos suficientes para continuar.
+2026-06-16 20:15:22,985 [INFO] ==================================================
+2026-06-16 20:15:22,986 [INFO] INICIO DEL PIPELINE ETL
+2026-06-16 20:15:22,986 [INFO] ==================================================
+2026-06-16 20:15:22,989 [INFO] [CSV] Archivo cargado: data/winequality_clean.csv (1359 filas)
+2026-06-16 20:15:22,989 [INFO] [CSV] Esquema validado correctamente (1359 filas).
+2026-06-16 20:15:25,059 [ERROR] [API] No se pudo conectar a http://127.0.0.1:8000. ¿Está corriendo uvicorn?
+2026-06-16 20:15:26,244 [INFO] HTTP Request: GET https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?select=%2A "HTTP/2 200 OK"
+2026-06-16 20:15:26,278 [INFO] [Supabase] 1000 filas extraídas de tabla 'vinos'.
+2026-06-16 20:15:26,279 [INFO] [Supabase] Esquema validado correctamente (1000 filas).
+2026-06-16 20:15:26,298 [INFO] [ETL] Dataset integrado guardado en: data/winequality_integrado.csv (1375 filas)
+2026-06-16 20:15:26,298 [INFO] ==================================================
+2026-06-16 20:15:26,298 [INFO] PIPELINE ETL COMPLETADO
+2026-06-16 20:15:26,298 [INFO] Fuente 1 (CSV):      1359 filas
+2026-06-16 20:15:26,298 [INFO] Fuente 2 (API):      0 predicciones
+2026-06-16 20:15:26,298 [INFO] Fuente 3 (Supabase): 1000 filas
+2026-06-16 20:15:26,298 [INFO] Dataset integrado:   1375 filas
+2026-06-16 20:15:26,299 [INFO] ==================================================
+2026-06-16 20:17:01,619 [INFO] ==================================================
+2026-06-16 20:17:01,619 [INFO] INICIO DEL PIPELINE ETL
+2026-06-16 20:17:01,619 [INFO] ==================================================
+2026-06-16 20:17:01,622 [INFO] [CSV] Archivo cargado: data/winequality_clean.csv (1359 filas)
+2026-06-16 20:17:01,622 [INFO] [CSV] Esquema validado correctamente (1359 filas).
+2026-06-16 20:17:01,629 [ERROR] [API] HTTP error en fila 0: 422 Client Error: Unprocessable Content for url: http://127.0.0.1:8000/predict
+2026-06-16 20:17:01,632 [ERROR] [API] HTTP error en fila 1: 422 Client Error: Unprocessable Content for url: http://127.0.0.1:8000/predict
+2026-06-16 20:17:01,634 [ERROR] [API] HTTP error en fila 2: 422 Client Error: Unprocessable Content for url: http://127.0.0.1:8000/predict
+2026-06-16 20:17:01,636 [ERROR] [API] HTTP error en fila 3: 422 Client Error: Unprocessable Content for url: http://127.0.0.1:8000/predict
+2026-06-16 20:17:01,638 [ERROR] [API] HTTP error en fila 4: 422 Client Error: Unprocessable Content for url: http://127.0.0.1:8000/predict
+2026-06-16 20:17:02,798 [INFO] HTTP Request: GET https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?select=%2A "HTTP/2 200 OK"
+2026-06-16 20:17:02,843 [INFO] [Supabase] 1000 filas extraídas de tabla 'vinos'.
+2026-06-16 20:17:02,843 [INFO] [Supabase] Esquema validado correctamente (1000 filas).
+2026-06-16 20:17:02,847 [INFO] [ETL] Consolidacion: 2359 filas -> 1375 tras deduplicacion.
+2026-06-16 20:17:02,856 [INFO] [ETL] Dataset integrado guardado en: data/winequality_integrado.csv (1375 filas)
+2026-06-16 20:17:02,856 [INFO] ==================================================
+2026-06-16 20:17:02,856 [INFO] PIPELINE ETL COMPLETADO
+2026-06-16 20:17:02,856 [INFO] Fuente 1 (CSV):      1359 filas
+2026-06-16 20:17:02,856 [INFO] Fuente 2 (API):      0 predicciones
+2026-06-16 20:17:02,856 [INFO] Fuente 3 (Supabase): 1000 filas
+2026-06-16 20:17:02,856 [INFO] Dataset integrado:   1375 filas
+2026-06-16 20:17:02,856 [INFO] ==================================================
+2026-06-16 20:18:37,630 [INFO] ==================================================
+2026-06-16 20:18:37,630 [INFO] INICIO DEL PIPELINE ETL
+2026-06-16 20:18:37,630 [INFO] ==================================================
+2026-06-16 20:18:37,634 [INFO] [CSV] Archivo cargado: data/winequality_clean.csv (1359 filas)
+2026-06-16 20:18:37,634 [INFO] [CSV] Esquema validado correctamente (1359 filas).
+2026-06-16 20:18:37,815 [INFO] [API] 5 predicciones obtenidas.
+2026-06-16 20:18:39,091 [INFO] HTTP Request: GET https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?select=%2A "HTTP/2 200 OK"
+2026-06-16 20:18:39,124 [INFO] [Supabase] 1000 filas extraídas de tabla 'vinos'.
+2026-06-16 20:18:39,124 [INFO] [Supabase] Esquema validado correctamente (1000 filas).
+2026-06-16 20:18:39,128 [INFO] [ETL] Consolidacion: 2359 filas -> 1375 tras deduplicacion.
+2026-06-16 20:18:39,137 [INFO] [ETL] Dataset integrado guardado en: data/winequality_integrado.csv (1375 filas)
+2026-06-16 20:18:39,137 [INFO] ==================================================
+2026-06-16 20:18:39,137 [INFO] PIPELINE ETL COMPLETADO
+2026-06-16 20:18:39,137 [INFO] Fuente 1 (CSV):      1359 filas
+2026-06-16 20:18:39,137 [INFO] Fuente 2 (API):      5 predicciones
+2026-06-16 20:18:39,137 [INFO] Fuente 3 (Supabase): 1000 filas
+2026-06-16 20:18:39,137 [INFO] Dataset integrado:   1375 filas
+2026-06-16 20:18:39,137 [INFO] ==================================================
+2026-06-16 20:21:34,070 [INFO] ==================================================
+2026-06-16 20:21:34,070 [INFO] INICIO DEL PIPELINE ETL
+2026-06-16 20:21:34,070 [INFO] ==================================================
+2026-06-16 20:21:34,073 [INFO] [CSV] Archivo cargado: data/winequality_clean.csv (1359 filas)
+2026-06-16 20:21:34,073 [INFO] [CSV] Esquema validado correctamente (1359 filas).
+2026-06-16 20:21:34,131 [INFO] [API] Fila 0 -> calidad_predicha: medio (98.0%)
+2026-06-16 20:21:34,171 [INFO] [API] Fila 1 -> calidad_predicha: medio (76.5%)
+2026-06-16 20:21:34,196 [INFO] [API] Fila 2 -> calidad_predicha: medio (96.0%)
+2026-06-16 20:21:34,220 [INFO] [API] Fila 3 -> calidad_predicha: medio (94.5%)
+2026-06-16 20:21:34,264 [INFO] [API] Fila 4 -> calidad_predicha: medio (95.0%)
+2026-06-16 20:21:34,265 [INFO] [API] 5 predicciones obtenidas.
+2026-06-16 20:21:35,402 [INFO] HTTP Request: GET https://kkzotlogxstldxfdaeny.supabase.co/rest/v1/vinos?select=%2A "HTTP/2 200 OK"
+2026-06-16 20:21:35,440 [INFO] [Supabase] 1000 filas extraidas de tabla 'vinos'.
+2026-06-16 20:21:35,441 [INFO] [Supabase] Esquema validado correctamente (1000 filas).
+2026-06-16 20:21:35,444 [INFO] [ETL] Consolidacion: 2359 filas -> 1375 tras deduplicacion.
+2026-06-16 20:21:35,453 [INFO] [ETL] Dataset integrado guardado en: data/winequality_integrado.csv (1375 filas)
+2026-06-16 20:21:35,454 [INFO] ==================================================
+2026-06-16 20:21:35,454 [INFO] PIPELINE ETL COMPLETADO
+2026-06-16 20:21:35,454 [INFO] Fuente 1 (CSV):      1359 filas
+2026-06-16 20:21:35,454 [INFO] Fuente 2 (API):      5 predicciones
+2026-06-16 20:21:35,454 [INFO] Fuente 3 (Supabase): 1000 filas
+2026-06-16 20:21:35,454 [INFO] Dataset integrado:   1375 filas
+2026-06-16 20:21:35,454 [INFO] ==================================================
