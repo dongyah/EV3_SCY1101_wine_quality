@@ -10,3 +10,4 @@ supabase
 python-dotenv
 dash
 plotly
+requests 
