@@ -189,6 +189,9 @@ def run_pipeline():
 
     guardar(df_final)
 
+    if not df_api.empty:
+        guardar(df_api, ruta="data/predicciones_api.csv")
+
     logger.info("=" * 50)
     logger.info("PIPELINE ETL COMPLETADO")
     logger.info(f"Fuente 1 (CSV):      {len(df_csv)} filas")

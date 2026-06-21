@@ -10,12 +10,11 @@ flowchart TD
     B[Fuente 2: API FastAPI /predict] --> ETL
     C[Fuente 3: Supabase - tabla vinos] --> ETL
     ETL --> INT[data/winequality_integrado.csv]
-
+    ETL --> LOG[data/predicciones_api.csv]
     SMOTE[etl/smote_wine.py] --> MODEL[SMOTE + RandomForestClassifier]
     MODEL --> PKL[api/wine_model.pkl]
     PKL --> B
-
-    INT --> DASH[Dashboard Plotly Dash - pendiente]
+    INT --> DASH[Dashboard Plotly Dash]
 ```
 
 El pipeline `smote_wine.py` regrupa la calidad en 3 clases (bajo/medio/premium), aplica SMOTE solo sobre datos de entrenamiento y entrena un RandomForestClassifier (200 estimadores). El modelo resultante se sirve a través de la API FastAPI, que actúa como Fuente 2 de datos. `main_etl.py` integra las 3 fuentes en un único dataset consolidado.
