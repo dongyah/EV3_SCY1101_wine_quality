@@ -56,7 +56,9 @@ except FileNotFoundError:
 
 # Validación de esquema
 columnas_presentes = set(df.columns)
+
 columnas_faltantes = COLUMNAS_ESPERADAS - columnas_presentes
+
 if columnas_faltantes:
     logger.error(f"Columnas faltantes en el CSV: {columnas_faltantes}")
     sys.exit(1)
@@ -64,7 +66,7 @@ logger.info("Validación de esquema: OK — todas las columnas requeridas están
 
 # Validar tipos numéricos
 columnas_numericas = [c for c in df.columns if c != "quality"]
-if not all(pd.api.types.is_numeric_dtype(df[c]) for c in df.columns):
+if not all(pd.api.types.is_numeric_dtype(df[c]) for c in columnas_numericas):
     logger.warning("Algunas columnas tienen tipos inesperados, se intentará continuar")
 
 # Validar nulos
