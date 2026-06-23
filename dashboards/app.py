@@ -14,7 +14,6 @@ from dash import dcc, html, Input, Output, State
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score
 
-# ─── Paths ────────────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INTEGRADO_PATH = os.path.join(BASE_DIR, "data", "winequality_integrado.csv")
 CLEAN_PATH = os.path.join(BASE_DIR, "data", "winequality_clean.csv")
@@ -53,7 +52,6 @@ def estilizar(fig):
     )
     return fig
 
-# ─── Carga de datos integrados (3 fuentes) ──────────────────────────────────
 try:
     df = pd.read_csv(INTEGRADO_PATH)
 except FileNotFoundError:
@@ -62,7 +60,6 @@ except FileNotFoundError:
 
 df["categoria"] = df["quality"].apply(clasificar_calidad)
 
-# ─── Métricas del modelo (recreando el split real de entrenamiento) ────────
 try:
     df_clean = pd.read_csv(CLEAN_PATH).dropna()
     df_clean["categoria"] = df_clean["quality"].apply(clasificar_calidad)
@@ -83,7 +80,6 @@ except Exception as e:
     MODELO_DISPONIBLE = False
     ACCURACY, CM, FEATURE_NAMES, IMPORTANCIAS = 0, None, [], []
 
-# ─── App ─────────────────────────────────────────────────────────────────
 app = dash.Dash(__name__)
 app.title = "Calidad de Vino - Dashboard"
 app.config.suppress_callback_exceptions = True
@@ -112,7 +108,8 @@ app.layout = html.Div([
     html.Div(id="tabs-content")
 ])
 
-# ─── Vista Ejecutiva ─────────────────────────────────────────────────────
+
+
 def layout_ejecutiva():
     total = len(df)
     pct_premium = round((df["categoria"] == "premium").mean() * 100, 1)
@@ -140,7 +137,8 @@ def layout_ejecutiva():
         html.Div(dcc.Graph(figure=fig_dist), className="chart-card")
     ])
 
-# ─── Vista Técnica ───────────────────────────────────────────────────────
+
+
 def layout_tecnica():
     if not MODELO_DISPONIBLE:
         return html.Div("No se pudo cargar el modelo o las métricas.", style={"padding": "20px"})
@@ -171,7 +169,8 @@ def layout_tecnica():
         html.Div(dcc.Graph(figure=fig_corr), className="chart-card"),
     ])
 
-# ─── Vista Operativa ─────────────────────────────────────────────────────
+
+
 def layout_operativa():
     return html.Div([
         html.H3("Filtros analíticos", className="section-title"),
@@ -203,7 +202,8 @@ def layout_operativa():
         html.Div(id="resultado-prediccion", style={"padding": "8px 24px", "fontSize": "16px"})
     ])
 
-# ─── Callback: cambiar de vista ─────────────────────────────────────────
+
+
 @app.callback(Output("tabs-content", "children"), Input("tabs", "value"))
 def render_tab(tab):
     if tab == "tab-exec":
@@ -213,7 +213,8 @@ def render_tab(tab):
     elif tab == "tab-ops":
         return layout_operativa()
 
-# ─── Callback: filtro analítico ─────────────────────────────────────────
+
+
 @app.callback(Output("grafico-filtrado", "figure"), Input("filtro-alcohol", "value"))
 def actualizar_filtro(rango_alcohol):
     dff = df[(df["alcohol"] >= rango_alcohol[0]) & (df["alcohol"] <= rango_alcohol[1])]
@@ -224,7 +225,8 @@ def actualizar_filtro(rango_alcohol):
     )
     return estilizar(fig)
 
-# ─── Callback: predicción vía API ───────────────────────────────────────
+
+
 @app.callback(
     Output("resultado-prediccion", "children"),
     Input("boton-predecir", "n_clicks"),
