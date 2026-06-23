@@ -9,7 +9,8 @@ import os
 import logging
 import sys
 
-# ─── Logging profesional ─────────────────────────────────────────────────────
+
+## Configuración de logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -20,14 +21,13 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ─── Validación de esquema ───────────────────────────────────────────────────
+#validacion de esquema
 COLUMNAS_ESPERADAS = {
     "fixed acidity", "volatile acidity", "citric acid", "residual sugar",
     "chlorides", "free sulfur dioxide", "total sulfur dioxide", "density",
     "pH", "sulphates", "alcohol", "quality"
 }
 
-# ─── 1. Cargar dataset ───────────────────────────────────────────────────────
 RUTA_CSV = "data/winequality_clean.csv"
 
 try:
@@ -40,7 +40,6 @@ except Exception as e:
     logger.error(f"Error al leer el CSV: {e}")
     sys.exit(1)
 
-# ─── 2. Validar esquema ──────────────────────────────────────────────────────
 columnas_presentes = set(df.columns)
 columnas_faltantes = COLUMNAS_ESPERADAS - columnas_presentes
 if columnas_faltantes:
@@ -48,7 +47,6 @@ if columnas_faltantes:
     sys.exit(1)
 logger.info("Validación de esquema: OK")
 
-# ─── 3. Validar nulos ────────────────────────────────────────────────────────
 nulos = df.isnull().sum().sum()
 if nulos > 0:
     logger.warning(f"{nulos} valores nulos encontrados — se eliminarán")
@@ -57,7 +55,7 @@ if nulos > 0:
 else:
     logger.info("Sin valores nulos")
 
-# ─── 4. Clasificar calidad ───────────────────────────────────────────────────
+
 def clasificar_calidad(q):
     if q <= 4:
         return "bajo"
@@ -73,7 +71,6 @@ except Exception as e:
     logger.error(f"Error al clasificar calidad: {e}")
     sys.exit(1)
 
-# ─── 5. Separar features y target ───────────────────────────────────────────
 try:
     X = df.drop(columns=["quality", "categoria"])
     y = df["categoria"]
@@ -82,7 +79,6 @@ except Exception as e:
     logger.error(f"Error al separar features: {e}")
     sys.exit(1)
 
-# ─── 6. Split entrenamiento / test ──────────────────────────────────────────
 try:
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
@@ -92,7 +88,6 @@ except Exception as e:
     logger.error(f"Error en train_test_split: {e}")
     sys.exit(1)
 
-# ─── 7. SMOTE solo en training ───────────────────────────────────────────────
 try:
     smote = SMOTE(random_state=42)
     X_train_bal, y_train_bal = smote.fit_resample(X_train, y_train)
@@ -101,7 +96,6 @@ except Exception as e:
     logger.error(f"Error en SMOTE: {e}")
     sys.exit(1)
 
-# ─── 8. Entrenar modelo ──────────────────────────────────────────────────────
 try:
     modelo = RandomForestClassifier(n_estimators=200, random_state=42)
     modelo.fit(X_train_bal, y_train_bal)
@@ -110,7 +104,6 @@ except Exception as e:
     logger.error(f"Error al entrenar el modelo: {e}")
     sys.exit(1)
 
-# ─── 9. Evaluar con test set real ────────────────────────────────────────────
 try:
     y_pred = modelo.predict(X_test)
     reporte = classification_report(y_test, y_pred)
@@ -119,7 +112,6 @@ except Exception as e:
     logger.error(f"Error en evaluación: {e}")
     sys.exit(1)
 
-# ─── 10. Guardar modelo ──────────────────────────────────────────────────────
 try:
     os.makedirs("api", exist_ok=True)
     joblib.dump(modelo, "api/wine_model.pkl")
@@ -128,7 +120,6 @@ except Exception as e:
     logger.error(f"Error al guardar el modelo: {e}")
     sys.exit(1)
 
-# ─── 11. Guardar dataset balanceado ─────────────────────────────────────────
 try:
     os.makedirs("data", exist_ok=True)
     df_balanced = X_train_bal.copy()

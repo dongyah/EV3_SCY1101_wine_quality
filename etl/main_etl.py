@@ -12,7 +12,8 @@ import requests
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
-# ─── Configuracion de logging ─────────────────────────────────────────────────
+
+#configuración de logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -23,13 +24,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ─── Variables de entorno ─────────────────────────────────────────────────────
+#cargar variables de entorno
 load_dotenv()
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
 
-# ─── Esquemas esperados ───────────────────────────────────────────────────────
+
+#esquema esperado de columnas para validación
 COLUMNAS_REQUERIDAS = [
     "fixed_acidity", "volatile_acidity", "citric_acid", "residual_sugar",
     "chlorides", "free_sulfur_dioxide", "total_sulfur_dioxide",
@@ -49,7 +51,8 @@ def validar_esquema(df: pd.DataFrame, columnas: list, fuente: str) -> bool:
     return True
 
 
-# ─── FUENTE 1: CSV ────────────────────────────────────────────────────────────
+
+#fuente 1 csv local
 def extraer_csv(ruta: str = "data/winequality_clean.csv") -> pd.DataFrame:
     """Carga y normaliza el CSV original de vinos."""
     try:
@@ -67,7 +70,8 @@ def extraer_csv(ruta: str = "data/winequality_clean.csv") -> pd.DataFrame:
         return pd.DataFrame()
 
 
-# ─── FUENTE 2: API FastAPI ────────────────────────────────────────────────────
+
+#fuente 2 api
 def extraer_api(df_csv: pd.DataFrame, muestra: int = 5) -> pd.DataFrame:
     """Envia filas del CSV a POST /predict y retorna predicciones."""
     resultados = []
@@ -108,7 +112,8 @@ def extraer_api(df_csv: pd.DataFrame, muestra: int = 5) -> pd.DataFrame:
     return df_api
 
 
-# ─── FUENTE 3: SUPABASE ───────────────────────────────────────────────────────
+
+#fuente 3 supabase
 def extraer_supabase() -> pd.DataFrame:
     """Extrae todos los registros de la tabla 'vinos' en Supabase."""
     try:
@@ -137,7 +142,8 @@ def extraer_supabase() -> pd.DataFrame:
         return pd.DataFrame()
 
 
-# ─── TRANSFORMACION Y CONSOLIDACION ──────────────────────────────────────────
+
+#función de transformación
 def transformar(df_csv: pd.DataFrame, df_supabase: pd.DataFrame) -> pd.DataFrame:
     """Consolida CSV y Supabase eliminando duplicados."""
     try:
@@ -156,7 +162,8 @@ def transformar(df_csv: pd.DataFrame, df_supabase: pd.DataFrame) -> pd.DataFrame
         return pd.DataFrame()
 
 
-# ─── GUARDAR RESULTADO ────────────────────────────────────────────────────────
+
+#guardar reultdp
 def guardar(df: pd.DataFrame, ruta: str = "data/winequality_integrado.csv") -> None:
     """Guarda el dataset integrado en CSV."""
     try:
@@ -166,7 +173,8 @@ def guardar(df: pd.DataFrame, ruta: str = "data/winequality_integrado.csv") -> N
         logger.error(f"[ETL] Error al guardar: {e}")
 
 
-# ─── PIPELINE PRINCIPAL ───────────────────────────────────────────────────────
+
+#pipeline inicial
 def run_pipeline():
     """Ejecuta el pipeline ETL completo integrando las 3 fuentes de datos."""
     logger.info("=" * 50)
