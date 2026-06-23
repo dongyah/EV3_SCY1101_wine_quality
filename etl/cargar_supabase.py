@@ -5,7 +5,7 @@ import os
 import logging
 import sys
 
-# ─── Logging profesional ────────────────────────────────────────────────────
+#logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -16,7 +16,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ─── 1. Cargar variables de entorno ─────────────────────────────────────────
+
+
+#cargar variables de entorno
 load_dotenv()
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
@@ -25,7 +27,9 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     logger.error("Faltan variables de entorno SUPABASE_URL o SUPABASE_KEY en el archivo .env")
     sys.exit(1)
 
-# ─── 2. Conectar a Supabase ──────────────────────────────────────────────────
+
+
+#conexion a supabase
 try:
     supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
     logger.info("Conexión a Supabase exitosa")
@@ -33,13 +37,14 @@ except Exception as e:
     logger.error(f"No se pudo conectar a Supabase: {e}")
     sys.exit(1)
 
-# ─── 3. Cargar y validar el CSV ──────────────────────────────────────────────
+
+## Cargar CSV y validar esquema
 RUTA_CSV = "data/winequality_clean.csv"
 
 COLUMNAS_ESPERADAS = {
     "fixed acidity", "volatile acidity", "citric acid", "residual sugar",
     "chlorides", "free sulfur dioxide", "total sulfur dioxide", "density",
-    "ph", "sulphates", "alcohol", "quality"   
+    "pH", "sulphates", "alcohol", "quality"   
 }
 
 try:
@@ -71,11 +76,14 @@ if nulos > 0:
 else:
     logger.info("Sin valores nulos — datos limpios")
 
-# ─── 4. Transformar columnas ─────────────────────────────────────────────────
+
+#transformar columnas a minúsculas y reemplazar espacios por guiones bajos
 df.columns = df.columns.str.replace(" ", "_").str.lower()
 logger.info(f"Columnas normalizadas: {list(df.columns)}")
 
-# ─── 5. Reagrupar calidades ──────────────────────────────────────────────────
+
+
+# Clasificar calidad en categorías
 def clasificar_calidad(q):
     if q <= 4:
         return "bajo"
@@ -87,7 +95,8 @@ def clasificar_calidad(q):
 df["categoria"] = df["quality"].apply(clasificar_calidad)
 logger.info(f"Distribución de categorías:\n{df['categoria'].value_counts().to_string()}")
 
-# ─── 6. Limpiar tabla antes de insertar (evitar duplicados) ─────────────────
+
+# Limpiar tabla en Supabase antes de insertar
 try:
     supabase.table("vinos").delete().neq("id", 0).execute()
     logger.info("Tabla 'vinos' limpiada exitosamente antes de la carga")
@@ -95,7 +104,9 @@ except Exception as e:
     logger.error(f"Error al limpiar la tabla: {e}")
     sys.exit(1)
 
-# ─── 7. Insertar en lotes ────────────────────────────────────────────────────
+
+
+# Cargar datos a Supabase en lotes
 registros = df.to_dict(orient="records")
 LOTE = 100
 total = len(registros)
@@ -112,7 +123,8 @@ for i in range(0, total, LOTE):
         errores += len(lote)
         logger.error(f"Error en lote {i}–{i+LOTE}: {e}")
 
-# ─── 8. Resumen final ────────────────────────────────────────────────────────
+
+# Finalizar carga
 if errores == 0:
     logger.info(f"Carga completa: {insertados} registros cargados en Supabase sin errores")
 else:
