@@ -21,7 +21,7 @@ El sistema está compuesto por cuatro capas independientes:
 - `/data/` — Datos originales, balanceados e integrados
 - `/docs/` — Documentación técnica, manuales, guía de instalación
 - `/tests/` — Tests automatizados (pytest)
-- `/docker/` — Dockerfiles y docker-compose *(en construcción, Fase 3)*
+- `/docker/` — Dockerfiles optimizados y orquestación con docker-compose.
 
 ## Requisitos Previos
 
@@ -70,16 +70,26 @@ Accesos:
 - Dashboard: http://localhost:8050
 - Documentación interactiva de la API (Swagger): http://localhost:8000/docs
 
+## 🐳 Despliegue con Docker (Fase 3)
+
+Todo el entorno ha sido containerizado. Para levantar la API, el Dashboard y ejecutar el ETL automáticamente en contenedores:
+
+```bash
+cd docker
+docker-compose up --build -d
+```
+
+Servicios levantados:
+- **Dashboard:** http://localhost:8050
+- **API REST (Docs):** http://localhost:8000/docs
+
 ## Documentación adicional
 
 - [Documentación de API](docs/API.md)
 - [Manual de usuario](docs/MANUAL_USUARIO.md)
 - [Guía de instalación y despliegue](docs/GUIA_INSTALACION.md)
-```
 
-Comandos para aplicar y subir (PowerShell, en la raíz del repo):
+## 🎥 Video de Exposición (Fase 3)
 
-```powershell
-git pull origin main
-notepad README.md
-```
+🔗 **Enlace al video de Google Drive:** [INSERTE_LINK_AQUI] *(¡Importante: Recuerda habilitar los permisos para que cualquier persona con el enlace pueda verlo!)*
+
