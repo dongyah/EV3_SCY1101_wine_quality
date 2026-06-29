@@ -1,0 +1,148 @@
+Lanzamiento de la Evaluación N°3: Proyecto End-to-End Profesional
+ 
+🚀 [HITO 1] Lanzamiento de la Evaluación N°3: Proyecto End-to-End Profesional
+Estimados y estimadas estudiantes,  
+Damos inicio oficial a la Evaluación Parcial N°3, la ponderación más alta de nuestra asignatura (40% de la nota final). Este hito no será una simple continuación de la entrega pasada; el desafío institucional es diseñar, construir y desplegar una solución tecnológica integral (End-to-End) en un contexto laboral real.  
+El proyecto consta de dos grandes dimensiones: un Encargo Grupal (10%) que se desarrolla en laboratorio durante 4 semanas, y una Defensa Político-Técnica Individual (30%) con una presentación y demo en vivo de 15 minutos.  
+Para abordar con éxito este desafío, la sesión de hoy (Semana 2) es crítica para realizar el Kick-off Ágil y estructurar el mapa de la arquitectura.
+🛠️ El Desafío Técnico (Lo que debe incluir el proyecto)
+El equipo deberá construir un sistema automatizado que cumpla estrictamente con los siguientes focos:
+Pipeline ETL Robusto: Integración de al menos tres fuentes de datos diferentes (ej: el CSV de la Eva 2 + consumo de una API REST externa + una base de datos SQL o NoSQL). Debe incluir validación de esquemas, manejo avanzado de errores y optimización.
+Despliegue y Containerización con Docker: Todo el sistema (ETL, Dashboards y APIs) debe estar completamente containerizado usando Dockerfiles, docker-compose y configurado mediante variables de entorno para garantizar su reproducibilidad.
+Dashboard Interactivo Multiaudiencia: Desarrollado en Plotly Dash o Streamlit, con interfaces visuales y terminología de negocio diferenciadas según el usuario (ejecutivo, técnico u operativo).
+Código Colaborativo y Arquitectura: Estructura modular de carpetas formal (/etl/, /dashboards/, /api/, /docker/, /tests/, /data/), uso profesional de Git (Branching, Pull Requests con revisión de código, control de Issues), e implementación de Testing Automatizado.
+📅 Actividad Obligatoria de Hoy: Planificación y Diseño Arquitectónico
+Debido a la envergadura del encargo, hoy cada equipo debe trabajar obligatoriamente en el aula en los siguientes entregables:
+Paso 1: Asignación de Roles según la Rúbrica:
+Líder de Proyecto/Product Owner: Responsable de la documentación técnica, manuales, diagramas de arquitectura y el enfoque de valor de negocio del dashboard.
+Data Engineer (Backend/Docker): Responsable del pipeline ETL, la conexión a las 3 fuentes de datos, los scripts de testing y la containerización en Docker.
+Data Analyst (Frontend/API): Responsable de la construcción de la API RESTful, el código del Dashboard interactivo y la lógica de visualización multiaudiencia.
+Paso 2: Diagrama de Flujo de Datos Inicial: Definir cuáles serán las 3 fuentes de datos que integrarán (retomando su dataset base de la Evaluación 2).
+Paso 3: Montaje del Tablero Ágil (Trello/Jira/Miro): Poblar las columnas de tareas con los entregables de la rúbrica (Ej: "Escribir Dockerfile para el dashboard", "Configurar pruebas unitarias en /tests/", "Diseñar vistas del Dashboard para gerencia y operaciones").
+📥 Requisito de Salida (Entrega Obligatoria de Hoy en AVA)
+Antes de terminar la clase, un integrante por grupo debe subir un documento que contenga:
+Arquitectura Propuesta: Breve descripción de las 3 fuentes de datos que integrarán y los componentes del sistema.
+Roles Técnicos: Nombre de los integrantes, rol asignado y la justificación técnica de su elección.
+Captura del Tablero Digital: Evidencia del Trello/Jira con las tareas iniciales distribuidas y con responsables asignados.
+Compromiso Individual: Reflexión breve (un párrafo por estudiante) sobre su responsabilidad de cara a la defensa individual del proyecto.
+📚 Biblioteca de Recursos: ¿De dónde obtener la información?
+Para guiar paso a paso el desarrollo de cada componente exigido por Duoc UC, utilicen activamente los siguientes archivos oficiales disponibles en el AVA:
+Para la Gestión del Equipo y Metodología (Trabajo de Hoy):
+3.1.1 PPT Planificación y División de Tareas en Proyectos Colaborativos.pptx (Uso de metodologías ágiles, tableros Kanban y mitigación de problemas en equipos).
+3.1.2 Organización colaborativa con metodologías ágiles.docx (Instrucciones específicas del diseño inicial).
+Para el Desarrollo del Dashboard y la Lógica Multiaudiencia:
+3.2.1 PPT Visualizaciones Interactivas y Dashboards en Ciencia de Datos.pptx (Principios de diseño de Stephen Few y Cole Nussbaumer Knaflic; plantillas de código interactivo en Plotly + Dash).
+3.2.2 Creación de dashboards y visualizaciones interactives.docx (Guía para realizar test de usabilidad con usuarios finales).
+Para el Repositorio de Git y Trabajo Colaborativo Técnico:
+3.3.1 PPT Gestión de Código y Colaboración con Git y GitHub.pptx (Explicación del repositorio como Grafo Acíclico Dirigido, comandos, flujos de ramas y Pull Requests).
+3.3.2 Colaborando en el código Control de versiones con Git y GitHub.docx (Pautas para resolver conflictos de merge y administrar Issues).
+Para Preparar la Defensa Individual y Storytelling:
+3.4.1 PPT Presentación Profesional de Proyectos de Ciencia de Datos.pptx (Estructura de la presentación, argumentación técnica, preparación ante objeciones y videos de Storytelling).
+3.4.2 Presentando y optimizando nuestro proyecto.docx (Instrucciones para iterar la presentación según el feedback técnico).
+¡A trabajar con el máximo estándar profesional desde el primer día! El desafío es exigente, pero tienen las herramientas y el acompañamiento para lograr una solución de software de nivel industrial.  
+Atentamente,  
+Mauricio González Véjar  
+Docente SCY1101 - Programación para la Ciencia de Datos
+Estimados y estimadas estudiantes,  
+Una vez aprobada la planificación inicial, la asignación de roles y la estructura de sus tableros ágiles, entramos oficialmente en la Etapa 2 del Proyecto Integrador.  
+Esta fase es el núcleo de la ingeniería de datos de su solución End-to-End. El objetivo es que dejen atrás el procesamiento manual celda por celda y construyan un flujo automatizado, robusto y profesional utilizando la estructura formal de carpetas exigida (/etl/, /api/, /tests/, /data/).
+🛠️ Objetivos Técnicos Obligatorios para esta Etapa
+Cada integrante debe ejecutar las tareas asignadas en su rol, pero todo el equipo debe integrarse mediante Git:
+1. Robustez del Pipeline ETL (/etl/ y /data/)
+Conexión Multifuentas: Escribir los scripts necesarios para extraer datos simultáneamente de las tres fuentes distintas aprobadas en su planificación (CSV original, API externa y base de datos).
+Validación de Esquemas: Implementar reglas estrictas en el código para verificar que los datos entrantes cumplen con los tipos de datos y formatos requeridos antes de ser transformados.
+Manejo Avanzado de Errores: El pipeline no puede detenerse si encuentra un dato corrupto o un nulo inesperado. Debe capturar las excepciones y registrar eventos mediante un sistema de logging profesional.
+2. Desarrollo de la API RESTful (/api/)
+Capa Intermedia: Desarrollar los endpoints estructurados que consuman la información limpia desde su base de datos (SQL o NoSQL). Esta API será la encargada de alimentar de forma eficiente al dashboard interactivo en la siguiente etapa.
+3. Git Workflow Profesional: Trabajo en Ramas y Pull Requests
+Para cumplir con el 15% de la rúbrica sobre uso profesional de Git, la revisión de código ya no es opcional:
+Feature Branches: Está estrictamente prohibido programar directamente en la rama principal (main o master). Cada alumno debe crear y trabajar en su propia rama de características (ej: feature/pipeline-etl o feature/api-rest).
+Pull Requests (PR) y Revisiones Cruzadas: Para integrar cambios al repositorio principal, se debe abrir un Pull Request. Otro miembro del equipo debe revisar el código, dejar comentarios técnicos y aprobarlo antes de hacer el merge.
+Resolución de Conflictos: Deben dejar evidencia en el historial de cómo abordaron y solucionaron los conflictos de código en equipo.
+📥 ¿Cómo avanzamos en el Tablero Ágil (Trello/Jira)?
+Para las sesiones de esta semana, actualicen su tablero digital moviendo a la columna "En Curso" elementos críticos como:
+“Configurar estructura de carpetas en GitHub (/etl/, /api/ y /tests/)”.
+“Escribir script de extracción y validación de esquemas para las 3 fuentes”.
+“Crear endpoints base de la API RESTful”.
+“Configurar los primeros scripts de testing automatizado”.
+📚 Documentación de Apoyo en AVA
+Recuerden consultar el material oficial de la asignatura para resolver dudas de implementación técnica y flujos de trabajo:
+Para Git, Ramas y Pull Requests: 3.3.1 PPT Gestión de Código y Colaboración con Git y GitHub.pptx y 3.3.2 Colaborando en el código Control de versiones con Git y GitHub.docx.
+Para la Arquitectura General y Requisitos: EV PARCIAL 3 SCY1101_ESTUDIANTE.pdf.
+¡Rigor técnico, commits limpios y excelente colaboración en equipo! Estaré pasando por sus puestos para auditar sus repositorios de GitHub y revisar el flujo de ramas en vivo.  
+Atentamente,  
+Mauricio González Véjar  
+Docente SCY1101 - Programación para la Ciencia de Datos
+Título: 📊 [SEMANA 15] Sprint Final de Código: Cierre de ETL, API y Layout del Dashboard  
+Estimados y estimadas estudiantes,  
+Estamos en la Semana 15 de clases (de un total de 17) y entramos oficialmente en la recta final de programación para nuestra Evaluación Parcial N°3 (40% de la nota final). Con el fin de optimizar su carga de trabajo, hemos reprogramado los hitos para que se enfoquen primero en el desarrollo del código base y dejen el despliegue en infraestructura para el cierre final.  
+Recuerden que el próximo lunes 22 de junio a las 23:59 hrs se congelará el código puro de Python en su repositorio de GitHub, por lo que esta es la semana clave para programar y solucionar errores en el laboratorio.  
+🎯 Objetivos de Desarrollo Críticos para las Clases de esta Semana:
+Pipeline ETL y API (/etl/ y /api/): Consolidar la conexión automatizada a las 3 fuentes de datos. Los scripts deben incluir de forma obligatoria la validación de esquemas y el sistema de control de excepciones (manejo de errores).
+Construcción del Dashboard (/dashboards/): Desarrollar la interfaz interactiva (Plotly Dash o Streamlit) y conectarla a los endpoints locales de su API RESTful. El foco debe estar en la lógica de visualización avanzada y la diferenciación de pantallas por audiencia (vistas macro para gerencia y filtros analíticos para operaciones).
+Testing (/tests/): Dejar listos los primeros scripts de pruebas unitarias automatizadas sobre las funciones de transformación de datos.
+📋 Gestión del Tablero Ágil (Trello/Jira):  
+Para las sesiones de este martes y miércoles, pasen a la columna "En Curso" las tarjetas de:
+"Conexión final a las 3 fuentes de datos y validación de esquemas".
+"Consumo de endpoints de la API desde el código del Dashboard".
+"Estructuración del layouts responsive multiaudiencia".
+Atentamente,  
+Mauricio González Véjar  
+Docente SCY1101 - Programación para la Ciencia de Datos
+Título: ⚠️ [CALENDARIO DEFINITIVO] Hitos de Entrega de Código, Defensa Escrita, Docker y Video  
+Estimados y estimadas estudiantes,  
+Con el propósito de resguardar la calidad técnica de sus proyectos y asegurar el tiempo correspondiente para la preparación del Examen Transversal institucional, se fija el calendario definitivo de entregas escalonadas para la Evaluación Parcial N°3:  
+⏱️ Fase 1: Congelamiento de Código Base en GitHub (Grupal)
+📅 Fecha Límite: Lunes 22 de Junio de 2026 a las 23:59 hrs.
+📥 Requisito: Todo el código puro de Python desarrollado en equipo debe quedar consolidado en el repositorio (carpetas /etl/, /api/, /dashboards/ y /tests/). El sistema completo debe ser funcional a nivel local. Pasada esta hora, los reportes e historial de Git se bloquearán para su revisión técnica.
+📝 Fase 2: Defensa Técnica Escrita Individual (30% de la Nota Final)
+📅 Fecha de Evaluación: Miércoles 24 de Junio (Semana 16) durante nuestra sesión de 3 bloques en el laboratorio.
+✏️ Formato: Cada estudiante responderá de manera individual un Cuestionario Técnico en formato Word aplicado en el aula. Las preguntas evaluarán directamente la lógica del código de la API, el flujo de ingeniería de datos en el ETL, las decisiones de diseño del Dashboard y la colaboración en Git en base al repositorio congelado el lunes 22. (Nota: Los conceptos de Docker quedan excluidos de esta evaluación escrita).
+🐳 Fase 3: Entrega de Configuración Docker + Video de Exposición (Grupal - 10%)
+📅 Fecha Límite: Lunes 29 de Junio de 2026 a las 23:59 hrs.
+📥 Requisito 1 (Código): La carpeta /docker/ debe incorporar los Dockerfiles optimizados, el archivo docker-compose.yml para la orquestación de servicios y las configuraciones por variables de entorno.
+🎥 Requisito 2 (Video): En el archivo README.md del repositorio, el equipo debe adjuntar el enlace a su video de exposición (Máx. 15 minutos), evidenciando el funcionamiento de la demo end-to-end corriendo dentro del entorno Docker y explicando la arquitectura final.
+👤 Entrega Individual: En este mismo apartado del AVA, cada estudiante debe subir individualmente el archivo de la presentación (Slides) utilizado en el video.
+Este esquema les otorga un respiro crucial para concentrarse primero en que el código funcione a la perfección, dejando la containerización y la edición del video para el cierre final.  
+¡Mucho éxito en este último tramo del semestre!  
+Atentamente,  
+Mauricio González Véjar  
+Docente SCY1101 - Programación para la Ciencia de Datos
+Título: ⚠️ [CALENDARIO DEFINITIVO] Hitos de Entrega de Código, Defensa Escrita, Docker y Video  
+Estimados y estimadas estudiantes,  
+Con el propósito de resguardar la calidad técnica de sus proyectos y asegurar el tiempo correspondiente para la preparación del Examen Transversal institucional, se fija el calendario definitivo de entregas escalonadas para la Evaluación Parcial N°3:  
+⏱️ Fase 1: Congelamiento de Código Base en GitHub (Grupal)
+📅 Fecha Límite: Lunes 22 de Junio de 2026 a las 23:59 hrs.
+📥 Requisito: Todo el código puro de Python desarrollado en equipo debe quedar consolidado en el repositorio (carpetas /etl/, /api/, /dashboards/ y /tests/). El sistema completo debe ser funcional a nivel local. Pasada esta hora, los reportes e historial de Git se bloquearán para su revisión técnica.
+📝 Fase 2: Defensa Técnica Escrita Individual (30% de la Nota Final)
+📅 Fecha de Evaluación: Miércoles 24 de Junio (Semana 16) durante nuestra sesión de 3 bloques en el laboratorio.
+✏️ Formato: Cada estudiante responderá de manera individual un Cuestionario Técnico en formato Word aplicado en el aula. Las preguntas evaluarán directamente la lógica del código de la API, el flujo de ingeniería de datos en el ETL, las decisiones de diseño del Dashboard y la colaboración en Git en base al repositorio congelado el lunes 22. (Nota: Los conceptos de Docker quedan excluidos de esta evaluación escrita).
+🐳 Fase 3: Entrega de Configuración Docker + Video de Exposición (Grupal - 10%)
+📅 Fecha Límite: Lunes 29 de Junio de 2026 a las 23:59 hrs.
+📥 Requisito 1 (Código): La carpeta /docker/ debe incorporar los Dockerfiles optimizados, el archivo docker-compose.yml para la orquestación de servicios y las configuraciones por variables de entorno.
+🎥 Requisito 2 (Video): En el archivo README.md del repositorio, el equipo debe adjuntar el enlace a su video de exposición (Máx. 15 minutos), evidenciando el funcionamiento de la demo end-to-end corriendo dentro del entorno Docker y explicando la arquitectura final.
+👤 Entrega Individual: En este mismo apartado del AVA, cada estudiante debe subir individualmente el archivo de la presentación (Slides) utilizado en el video.
+Este esquema les otorga un respiro crucial para concentrarse primero en que el código funcione a la perfección, dejando la containerización y la edición del video para el cierre final.  
+¡Mucho éxito en este último tramo del semestre!  
+Atentamente,  
+Mauricio González Véjar  
+Docente SCY1101 - Programación para la Ciencia de Datos
+Estimados y estimadas estudiantes,  
+Como ya se fijó en nuestro calendario oficial, este lunes 22 de junio a las 23:59 hrs. finaliza el plazo para el congelamiento del código base en GitHub (Fase 1).  
+Para formalizar este hito, les comparto las instrucciones operativas de entrega y la modalidad de trabajo para la sesión de este martes:  
+📥 1. Instrucciones de Entrega en AVA (Fase 1)  
+La entrega formal debe ser realizada por un integrante del equipo a través del enlace directo en la plataforma: Evaluación Parcial 3 | Encargo (10%).  
+Al momento de enviar, es obligatorio que utilicen el cuadro de texto del mensaje de envío para incluir claramente:
+El link directo al Repositorio de GitHub del grupo.
+La lista completa de los integrantes del equipo que participaron en el desarrollo técnicos.
+📅 2. Modalidad de Asistencia para el Martes 23 de Junio  
+Para la sesión de este martes 23 de junio, NO será necesaria la asistencia presencial en el laboratorio.
+Control de Asistencia: Todos los equipos que hayan realizado correctamente su envío en la plataforma AVA dentro del plazo establecido quedarán automáticamente registrados como Presentes en el sistema para esta jornada.
+Uso del Bloque: Mientras ustedes aprovechan ese tiempo de forma autónoma para seguir organizando la entrega final de Docker y el video (Fase 3), yo como docente me dedicaré exclusivamente a auditar los repositorios entregados y ver sus reportes técnicos.
+📝 3. Confección de la Defensa Técnica (Miércoles 24/06)  
+Esta revisión exhaustiva que realizaré el martes servirá como base directa para la confección de las preguntas individuales del Cuestionario en Word que responderán de forma presencial el miércoles 24 de junio en el aula. Las preguntas de cada estudiante estarán estrictamente ligadas a la lógica, los commits y la arquitectura del código que su propio grupo congeló el lunes por la noche.  
+Aseguren su entrega a tiempo en el enlace correcto, verifiquen que el repositorio sea público o cuente con los accesos correspondientes, y repasen a fondo su código para la prueba del miércoles.  
+¡Mucho éxito en el cierre de esta primera fase!  
+Atentamente,  
+Mauricio González Véjar  
+Docente SCY1101 - Programación para la Ciencia de Datos

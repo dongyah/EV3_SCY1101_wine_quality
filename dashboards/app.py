@@ -1,4 +1,4 @@
-"""
+﻿"""
 Dashboard interactivo - Calidad de Vino Tinto
 Vistas: Ejecutiva, Técnica, Operativa
 """
@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INTEGRADO_PATH = os.path.join(BASE_DIR, "data", "winequality_integrado.csv")
 CLEAN_PATH = os.path.join(BASE_DIR, "data", "winequality_clean.csv")
 MODEL_PATH = os.path.join(BASE_DIR, "api", "wine_model.pkl")
-API_URL = "http://127.0.0.1:8000/predict"
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000") + "/predict"
 
 COLOR_CATEGORIA = {"bajo": "#C1502E", "medio": "#B08D2B", "premium": "#1F6F50"}
 
@@ -252,4 +252,4 @@ def predecir(n_clicks, *valores):
         return html.Div(f"Error en la predicción: {e}", className="predict-result-error")
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8050)
+    app.run(debug=True, host="0.0.0.0", port=8050)

@@ -1,0 +1,23 @@
+# Dockerfile para la API RESTful (FastAPI)
+# Utilizamos una imagen ligera (slim) de Python 3.11 porque reduce drásticamente 
+# el peso de la imagen final y previene vulnerabilidades de seguridad comunes en SO completos.
+FROM python:3.11-slim
+
+# Definimos el directorio de trabajo donde vivirá nuestro código dentro del contenedor.
+WORKDIR /app
+
+# Copiamos primero el archivo de dependencias. Hacemos esto antes que el código fuente
+# para aprovechar la caché de capas de Docker. Si requirements.txt no cambia, 
+# Docker no volverá a instalar todo, acelerando los futuros builds.
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Ahora sí copiamos el directorio de la API que contiene main.py y el modelo pkl.
+COPY ./api ./api
+
+# Exponemos el puerto 8000 que es el estándar donde uvicorn sirve la API.
+EXPOSE 8000
+
+# Lanzamos el servidor con uvicorn apuntando a nuestra app en api/main.py.
+# Usamos 0.0.0.0 para que la API sea accesible desde la red de Docker (y desde tu localhost).
+CMD ["python", "-m", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

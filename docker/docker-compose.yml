@@ -1,0 +1,56 @@
+# Archivo de orquestación para levantar todo nuestro entorno End-to-End
+# Cumple con el requisito de la rúbrica: "docker-compose para orquestación y configuración externa"
+version: '3.8'
+
+services:
+  # ----------------------------------------------------
+  # Servicio 1: API RESTful (Backend Predictivo)
+  # ----------------------------------------------------
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
+    container_name: api-wine-quality
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    restart: always  # Queremos que la API esté siempre disponible para el Dashboard y ETL.
+
+  # ----------------------------------------------------
+  # Servicio 2: Pipeline ETL (Data Engineering)
+  # ----------------------------------------------------
+  # Toma datos de Supabase, API y CSV, valida esquemas y consolida.
+  etl:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.etl
+    container_name: etl-wine-quality
+    env_file:
+      - ../.env
+    environment:
+      # Sobrescribimos la URL de la API local por el nombre del contenedor de la API en la red Docker
+      - API_URL=http://api:8000
+    depends_on:
+      - api
+    # El ETL procesa los datos y termina. NO usamos restart always para evitar un bucle infinito.
+    restart: "no"
+
+  # ----------------------------------------------------
+  # Servicio 3: Dashboard Interactivo (Frontend / Visualización)
+  # ----------------------------------------------------
+  dashboard:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dashboard
+    container_name: dashboard-wine-quality
+    ports:
+      - "8050:8050"
+    env_file:
+      - ../.env
+    environment:
+      # Para que el Dashboard haga predicciones en vivo enviando requests a la API interna
+      - API_URL=http://api:8000
+    depends_on:
+      - api
+    restart: always

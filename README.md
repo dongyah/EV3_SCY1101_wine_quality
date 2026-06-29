@@ -1,5 +1,7 @@
 # EV3 SCY1101 — Sistema de Predicción de Calidad de Vino Tinto
 
+Proyecto individual de la estudiante Belén Toloza para la asignatura SCY1101.  
+
 Este proyecto implementa una arquitectura end-to-end para el procesamiento, almacenamiento, predicción y visualización de la calidad de vinos tintos. El sistema integra tres fuentes de datos (CSV, API REST propia y base de datos en la nube) y clasifica cada muestra en tres categorías de negocio: **bajo** (≤4), **medio** (5–6) y **premium** (≥7).
 
 ## Arquitectura del Sistema
