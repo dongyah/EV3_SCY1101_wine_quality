@@ -92,10 +92,4 @@ Servicios levantados:
 ## 🎥 Video de Exposición (Fase 3)
 
 🔗 **Enlace al video de Google Drive:** [INSERTE_LINK_AQUI] *(¡Importante: Recuerda habilitar los permisos para que cualquier persona con el enlace pueda verlo!)*
-
-Comandos para aplicar y subir (PowerShell, en la raíz del repo):
-
-```powershell
-git pull origin main
-notepad README.md
-```
+
