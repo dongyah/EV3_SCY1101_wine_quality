@@ -1,0 +1,22 @@
+# Dockerfile para el Dashboard interactivo (Plotly Dash)
+# Elegimos Python 3.11 slim para mantener consistencia con la API y optimizar recursos.
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Misma estrategia de caché: instalamos dependencias primero.
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiamos las carpetas necesarias para que el Dashboard funcione.
+# Necesitamos api/ para cargar el modelo preentrenado (.pkl), data/ para los csv limpios 
+# e integrados, y dashboards/ para la estructura web.
+COPY ./api ./api
+COPY ./data ./data
+COPY ./dashboards ./dashboards
+
+# Exponemos el puerto 8050 que Dash utiliza por defecto.
+EXPOSE 8050
+
+# Levantamos el servidor de Dash directamente ejecutando app.py.
+CMD ["python", "dashboards/app.py"]
