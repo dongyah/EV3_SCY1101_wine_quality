@@ -91,5 +91,5 @@ Servicios levantados:
 
 ## 🎥 Video de Exposición (Fase 3)
 
-🔗 **Enlace al video de Google Drive:** [INSERTE_LINK_AQUI] *(¡Importante: Recuerda habilitar los permisos para que cualquier persona con el enlace pueda verlo!)*
-
+🔗 **Enlace al video de Google Drive:** [https://drive.google.com/file/d/1esnkL-8f6WJaPf7zIjHpBmGldimB-B1z/view?usp=sharing] 
+
