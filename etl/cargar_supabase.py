@@ -64,19 +64,29 @@ if columnas_faltantes:
     sys.exit(1)
 logger.info("Validación de esquema: OK — todas las columnas requeridas están presentes")
 
-# Validar tipos numéricos
+# Validar y coercionar tipos numéricos de forma estricta
 columnas_numericas = [c for c in df.columns if c != "quality"]
-if not all(pd.api.types.is_numeric_dtype(df[c]) for c in columnas_numericas):
-    logger.warning("Algunas columnas tienen tipos inesperados, se intentará continuar")
+filas_antes = len(df)
 
-# Validar nulos
-nulos = df.isnull().sum().sum()
-if nulos > 0:
-    logger.warning(f"Se encontraron {nulos} valores nulos — se eliminarán")
+# Coercionar predictores a float de forma explícita
+for col in columnas_numericas:
+    df[col] = pd.to_numeric(df[col], errors="coerce")
+
+# Coercionar columna objetivo (quality) a número
+df["quality"] = pd.to_numeric(df["quality"], errors="coerce")
+
+# Validar valores nulos resultantes de coerción o preexistentes
+nulos_por_columna = df.isnull().sum()
+nulos_totales = nulos_por_columna.sum()
+
+if nulos_totales > 0:
+    logger.warning(f"Se detectaron {nulos_totales} valores no numéricos o nulos. Detalle:\n{nulos_por_columna[nulos_por_columna > 0].to_string()}")
     df = df.dropna()
-    logger.info(f"Filas tras eliminar nulos: {len(df)}")
+    filas_eliminadas = filas_antes - len(df)
+    logger.info(f"Filas descartadas por incoherencia de tipos o nulos: {filas_eliminadas}. Restantes: {len(df)}")
 else:
-    logger.info("Sin valores nulos — datos limpios")
+    logger.info("Coerción de tipos exitosa — Todos los registros son numéricos y válidos")
+
 
 
 #transformar columnas a minúsculas y reemplazar espacios por guiones bajos
