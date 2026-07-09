@@ -62,11 +62,14 @@ def extraer_csv(ruta: str = "data/winequality_clean.csv") -> pd.DataFrame:
         if not validar_esquema(df, COLUMNAS_REQUERIDAS, "CSV"):
             return pd.DataFrame()
         return df
-    except FileNotFoundError:
-        logger.error(f"[CSV] Archivo no encontrado: {ruta}")
+    except FileNotFoundError as e:
+        logger.error(f"[CSV] Archivo no encontrado en {ruta}: {e}")
+        return pd.DataFrame()
+    except pd.errors.ParserError as e:
+        logger.error(f"[CSV] Error de formato/parseo al leer el CSV {ruta}: {e}")
         return pd.DataFrame()
     except Exception as e:
-        logger.error(f"[CSV] Error inesperado: {e}")
+        logger.error(f"[CSV] Error inesperado al procesar {ruta}: {type(e).__name__} - {e}")
         return pd.DataFrame()
 
 
@@ -98,13 +101,15 @@ def extraer_api(df_csv: pd.DataFrame, muestra: int = 5) -> pd.DataFrame:
                 **payload
             })
             logger.info(f"[API] Fila {i} -> calidad_predicha: {calidad} ({confianza}%)")
-        except requests.exceptions.ConnectionError:
-            logger.error(f"[API] No se pudo conectar a {API_URL}. Levanta uvicorn primero.")
+        except requests.exceptions.ConnectionError as e:
+            logger.error(f"[API] Error de conexión a {API_URL} en fila {i}: {e}. Deteniendo reintentos.")
             break
         except requests.exceptions.HTTPError as e:
-            logger.error(f"[API] HTTP error en fila {i}: {e}")
+            logger.error(f"[API] Error HTTP al consultar fila {i}: {e}")
+        except requests.exceptions.Timeout as e:
+            logger.error(f"[API] Timeout al consultar fila {i}: {e}")
         except Exception as e:
-            logger.error(f"[API] Error inesperado en fila {i}: {e}")
+            logger.error(f"[API] Error inesperado en fila {i}: {type(e).__name__} - {e}")
 
     df_api = pd.DataFrame(resultados)
     if not df_api.empty:
@@ -138,7 +143,7 @@ def extraer_supabase() -> pd.DataFrame:
         return df
 
     except Exception as e:
-        logger.error(f"[Supabase] Error al conectar o consultar: {e}")
+        logger.error(f"[Supabase] Error en extracción de Supabase ({type(e).__name__}): {e}")
         return pd.DataFrame()
 
 
@@ -157,8 +162,14 @@ def transformar(df_csv: pd.DataFrame, df_supabase: pd.DataFrame) -> pd.DataFrame
         despues = len(df_combined)
         logger.info(f"[ETL] Consolidacion: {antes} filas -> {despues} tras deduplicacion.")
         return df_combined
+    except KeyError as e:
+        logger.error(f"[ETL] Error en transformación. Columna faltante: {e}")
+        return pd.DataFrame()
+    except TypeError as e:
+        logger.error(f"[ETL] Error de tipos durante concatenación/deduplicación: {e}")
+        return pd.DataFrame()
     except Exception as e:
-        logger.error(f"[ETL] Error en transformacion: {e}")
+        logger.error(f"[ETL] Error inesperado en transformacion ({type(e).__name__}): {e}")
         return pd.DataFrame()
 
 
@@ -169,8 +180,10 @@ def guardar(df: pd.DataFrame, ruta: str = "data/winequality_integrado.csv") -> N
     try:
         df.to_csv(ruta, index=False)
         logger.info(f"[ETL] Dataset integrado guardado en: {ruta} ({len(df)} filas)")
+    except PermissionError as e:
+        logger.error(f"[ETL] Error de permisos al escribir archivo en {ruta}: {e}")
     except Exception as e:
-        logger.error(f"[ETL] Error al guardar: {e}")
+        logger.error(f"[ETL] Error inesperado al guardar en {ruta} ({type(e).__name__}): {e}")
 
 
 
