@@ -1,3 +1,23 @@
+"""
+clasificacion_modelos.py - Entrenamiento y Optimización de Clasificación de Calidad de Vino
+
+JUSTIFICACIÓN TÉCNICA (IEP 2.1.3):
+1. RandomForestClassifier (Método de Ensamble - Bagging):
+   - Ventajas: Maneja de forma robusta la no-linealidad de variables fisicoquímicas del vino sin requerir escalado estricto.
+     Su estructura de árboles reduce el sobreajuste (overfitting) y es resistente a valores extremos (outliers).
+2. LogisticRegression (Modelo Lineal Baseline):
+   - Ventajas: Proporciona un baseline rápido y altamente interpretable mediante los coeficientes de las variables.
+     Permite evaluar si relaciones lineales simples son suficientes para clasificar las categorías.
+
+INTERPRETACIÓN DE MÉTRICAS Y NEGOCIO (IEP 2.2.2):
+- Desbalance de datos: La clase 'medio' representa ~82% de las muestras. Para evitar que el clasificador se sesgue
+  hacia esta clase común, se aplica SMOTE (Synthetic Minority Over-sampling Technique) balanceando artificialmente las clases.
+- F1-Score Macro: Métrica de optimización elegida en GridSearchCV. Promedia el F1-Score de todas las categorías
+  ('bajo', 'medio', 'premium') de forma equitativa, forzando al modelo a desempeñarse bien tanto en vinos premium como comunes.
+- Recall (Exhaustividad) en Premium: Crítico para la bodega. Minimizar falsos negativos asegura que vinos excelentes
+  no sean clasificados erróneamente como de calidad media, protegiendo el margen de ganancia comercial.
+"""
+
 import os
 import sys
 import logging
@@ -12,6 +32,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from imblearn.over_sampling import SMOTE
+
 
 # Configuración de logging profesional
 logging.basicConfig(
