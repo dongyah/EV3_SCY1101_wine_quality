@@ -34,7 +34,7 @@ try:
     supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
     logger.info("Conexión a Supabase exitosa")
 except Exception as e:
-    logger.error(f"No se pudo conectar a Supabase: {e}")
+    logger.error(f"No se pudo inicializar el cliente de Supabase ({type(e).__name__}): {e}")
     sys.exit(1)
 
 
@@ -50,8 +50,14 @@ COLUMNAS_ESPERADAS = {
 try:
     df = pd.read_csv(RUTA_CSV)
     logger.info(f"CSV cargado: {len(df)} filas, {len(df.columns)} columnas")
-except FileNotFoundError:
-    logger.error(f"No se encontró el archivo: {RUTA_CSV}")
+except FileNotFoundError as e:
+    logger.error(f"No se encontró el archivo {RUTA_CSV}: {e}")
+    sys.exit(1)
+except pd.errors.ParserError as e:
+    logger.error(f"Error de formato al procesar el archivo CSV {RUTA_CSV}: {e}")
+    sys.exit(1)
+except Exception as e:
+    logger.error(f"Error inesperado al leer CSV en {RUTA_CSV} ({type(e).__name__}): {e}")
     sys.exit(1)
 
 # Validación de esquema
@@ -103,7 +109,7 @@ try:
     supabase.table("vinos").delete().neq("id", 0).execute()
     logger.info("Tabla 'vinos' limpiada exitosamente antes de la carga")
 except Exception as e:
-    logger.error(f"Error al limpiar la tabla: {e}")
+    logger.error(f"Error al limpiar la tabla 'vinos' en Supabase ({type(e).__name__}): {e}")
     sys.exit(1)
 
 
@@ -123,7 +129,7 @@ for i in range(0, total, LOTE):
         logger.info(f"Progreso: {insertados}/{total} registros insertados")
     except Exception as e:
         errores += len(lote)
-        logger.error(f"Error en lote {i}–{i+LOTE}: {e}")
+        logger.error(f"Error al insertar lote {i}–{i+LOTE} en Supabase ({type(e).__name__}): {e}")
 
 
 # Finalizar carga
