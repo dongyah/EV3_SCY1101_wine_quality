@@ -34,7 +34,7 @@ try:
     supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
     logger.info("Conexión a Supabase exitosa")
 except Exception as e:
-    logger.error(f"No se pudo conectar a Supabase: {e}")
+    logger.error(f"No se pudo inicializar el cliente de Supabase ({type(e).__name__}): {e}")
     sys.exit(1)
 
 
@@ -50,8 +50,14 @@ COLUMNAS_ESPERADAS = {
 try:
     df = pd.read_csv(RUTA_CSV)
     logger.info(f"CSV cargado: {len(df)} filas, {len(df.columns)} columnas")
-except FileNotFoundError:
-    logger.error(f"No se encontró el archivo: {RUTA_CSV}")
+except FileNotFoundError as e:
+    logger.error(f"No se encontró el archivo {RUTA_CSV}: {e}")
+    sys.exit(1)
+except pd.errors.ParserError as e:
+    logger.error(f"Error de formato al procesar el archivo CSV {RUTA_CSV}: {e}")
+    sys.exit(1)
+except Exception as e:
+    logger.error(f"Error inesperado al leer CSV en {RUTA_CSV} ({type(e).__name__}): {e}")
     sys.exit(1)
 
 # Validación de esquema
@@ -68,24 +74,21 @@ logger.info("Validación de esquema: OK — todas las columnas requeridas están
 columnas_numericas = [c for c in df.columns if c != "quality"]
 filas_antes = len(df)
 
-# Coercionar predictores a float de forma explícita
-for col in columnas_numericas:
-    df[col] = pd.to_numeric(df[col], errors="coerce")
+for c in columnas_numericas:
+    if not pd.api.types.is_numeric_dtype(df[c]):
+        logger.warning(f"Columna '{c}' con tipo inesperado, forzando coerción numérica")
+    df[c] = pd.to_numeric(df[c], errors="coerce")
 
-# Coercionar columna objetivo (quality) a número
 df["quality"] = pd.to_numeric(df["quality"], errors="coerce")
 
-# Validar valores nulos resultantes de coerción o preexistentes
-nulos_por_columna = df.isnull().sum()
-nulos_totales = nulos_por_columna.sum()
-
-if nulos_totales > 0:
-    logger.warning(f"Se detectaron {nulos_totales} valores no numéricos o nulos. Detalle:\n{nulos_por_columna[nulos_por_columna > 0].to_string()}")
-    df = df.dropna()
-    filas_eliminadas = filas_antes - len(df)
-    logger.info(f"Filas descartadas por incoherencia de tipos o nulos: {filas_eliminadas}. Restantes: {len(df)}")
+filas_corruptas = df[columnas_numericas].isnull().any(axis=1).sum()
+if filas_corruptas > 0:
+    logger.warning(f"Se descartarán {filas_corruptas} filas con valores no numéricos tras la coerción")
+    df = df.dropna(subset=columnas_numericas)
+    logger.info(f"Filas tras coerción y limpieza: {len(df)} (de {filas_antes} originales)")
 else:
     logger.info("Coerción de tipos exitosa — Todos los registros son numéricos y válidos")
+
 
 
 
@@ -113,7 +116,7 @@ try:
     supabase.table("vinos").delete().neq("id", 0).execute()
     logger.info("Tabla 'vinos' limpiada exitosamente antes de la carga")
 except Exception as e:
-    logger.error(f"Error al limpiar la tabla: {e}")
+    logger.error(f"Error al limpiar la tabla 'vinos' en Supabase ({type(e).__name__}): {e}")
     sys.exit(1)
 
 
@@ -133,7 +136,7 @@ for i in range(0, total, LOTE):
         logger.info(f"Progreso: {insertados}/{total} registros insertados")
     except Exception as e:
         errores += len(lote)
-        logger.error(f"Error en lote {i}–{i+LOTE}: {e}")
+        logger.error(f"Error al insertar lote {i}–{i+LOTE} en Supabase ({type(e).__name__}): {e}")
 
 
 # Finalizar carga

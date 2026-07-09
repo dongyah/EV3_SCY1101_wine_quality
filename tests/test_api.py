@@ -51,7 +51,27 @@ def test_prediccion_datos_incompletos():
     datos_incompletos = {
         "fixed_acidity": 7.4,
         "volatile_acidity": 0.70
-        # Faltan 9 parámetros
     }
     response = client.post("/predict", json=datos_incompletos)
-    assert response.status_code == 422  # FastAPI devuelve 422 cuando faltan campos
+    assert response.status_code == 422
+
+
+# TEST 4: Verificar que la API de regresión predice con datos válidos
+def test_prediccion_regresion_valida():
+    response = client.post("/predict_quality", json=VINO_REAL)
+    assert response.status_code == 200
+    data = response.json()
+    assert "calidad_predicha_num" in data
+    assert isinstance(data["calidad_predicha_num"], (int, float))
+    assert 0 <= data["calidad_predicha_num"] <= 10
+
+
+# TEST 5: Verificar que la API de regresión rechaza datos incompletos
+def test_prediccion_regresion_datos_incompletos():
+    datos_incompletos = {
+        "fixed_acidity": 7.4,
+        "volatile_acidity": 0.70
+    }
+    response = client.post("/predict_quality", json=datos_incompletos)
+    assert response.status_code == 422
+
