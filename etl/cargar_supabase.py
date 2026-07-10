@@ -72,8 +72,19 @@ logger.info("Validación de esquema: OK — todas las columnas requeridas están
 
 # Validar tipos numéricos
 columnas_numericas = [c for c in df.columns if c != "quality"]
-if not all(pd.api.types.is_numeric_dtype(df[c]) for c in columnas_numericas):
-    logger.warning("Algunas columnas tienen tipos inesperados, se intentará continuar")
+filas_antes = len(df)
+for c in columnas_numericas:
+    if not pd.api.types.is_numeric_dtype(df[c]):
+        logger.warning(f"Columna '{c}' con tipo inesperado, forzando coerción numérica")
+    df[c] = pd.to_numeric(df[c], errors="coerce")
+
+filas_corruptas = df[columnas_numericas].isnull().any(axis=1).sum()
+if filas_corruptas > 0:
+    logger.warning(f"Se descartarán {filas_corruptas} filas con valores no numéricos tras la coerción")
+    df = df.dropna(subset=columnas_numericas)
+    logger.info(f"Filas tras coerción: {len(df)} (de {filas_antes} originales)")
+
+
 
 # Validar nulos
 nulos = df.isnull().sum().sum()

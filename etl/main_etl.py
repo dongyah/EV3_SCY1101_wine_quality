@@ -127,8 +127,24 @@ def extraer_supabase() -> pd.DataFrame:
             return pd.DataFrame()
 
         client: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-        respuesta = client.table("vinos").select("*").execute()
-        datos = respuesta.data
+
+
+
+        todos_los_datos = []
+        offset = 0
+        LOTE = 1000
+        while True:
+            respuesta = client.table("vinos").select("*").range(offset, offset + LOTE - 1).execute()
+            lote_datos = respuesta.data
+            if not lote_datos:
+                break
+            todos_los_datos.extend(lote_datos)
+            if len(lote_datos) < LOTE:
+                break
+            offset += LOTE
+        
+        
+        datos = todos_los_datos
 
         if not datos:
             logger.warning("[Supabase] Tabla 'vinos' vacia o sin datos.")
